@@ -99,8 +99,14 @@ public class PgcopySinkConfiguration {
 	@ServiceActivator(inputChannel = "toSink")
 	public MessageHandler datasetSinkMessageHandler(final JdbcTemplate jdbcTemplate) {
 
+		String delimStr = ",";
 		// the copy command
-		final String sql = "COPY " + properties.getTableName() + " FROM STDIN CSV";
+		if (properties.getDelimiter() == '\t')
+			delimStr = "E'\t'";
+		else
+			delimStr = properties.getDelimiter().toString();
+
+		final String sql = "COPY " + properties.getTableName() + " FROM STDIN WITH DELIMITER " + delimStr + " CSV";
 
 		return new MessageHandler() {
 
@@ -109,6 +115,9 @@ public class PgcopySinkConfiguration {
 				Object payload = message.getPayload();
 				if (payload instanceof Collection<?>) {
 					final Collection<?> payloads = (Collection<?>) payload;
+					if (properties.getIgnoreFirst() && payloads.size()>1) {
+						payloads.iterator().remove();
+					}
 					logger.debug("Executing batch of size " + payloads.size() + " for " + sql);
 					try {
 						jdbcTemplate.execute(

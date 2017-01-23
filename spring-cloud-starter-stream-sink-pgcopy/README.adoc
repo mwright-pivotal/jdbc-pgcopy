@@ -9,7 +9,9 @@ The **$$jdbc$$** $$sink$$ has the following options:
 
 //tag::configuration-properties[]
 $$pgcopy.batch-size$$:: $$Threshold in number of messages when file will be automatically flushed and rolled over.$$ *($$Integer$$, default: `$$10000$$`)*
+$$pgcopy.delimiter$$:: $$<documentation missing>$$ *($$Character$$, default: `$$,$$`)*
 $$pgcopy.idle-timeout$$:: $$Idle timeout in milliseconds when Hadoop file resource is automatically closed.$$ *($$Long$$, default: `$$-1$$`)*
+$$pgcopy.ignore-first$$:: $$<documentation missing>$$ *($$Boolean$$, default: `$$false$$`)*
 $$pgcopy.table-name$$:: $$The name of the table to write into.$$ *($$String$$, default: `$$<none>$$`)*
 $$spring.datasource.driver-class-name$$:: $$<documentation missing>$$ *($$String$$, default: `$$<none>$$`)*
 $$spring.datasource.init-sql$$:: $$<documentation missing>$$ *($$String$$, default: `$$<none>$$`)*

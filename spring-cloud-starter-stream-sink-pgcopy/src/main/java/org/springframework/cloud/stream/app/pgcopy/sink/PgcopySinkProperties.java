@@ -45,6 +45,26 @@ public class PgcopySinkProperties {
 	 */
 	private long idleTimeout = -1L;
 
+	public Character getDelimiter() {
+		return delimiter;
+	}
+
+	public void setDelimiter(Character delimiter) {
+		this.delimiter = delimiter;
+	}
+
+	private Character delimiter = ',';
+
+	public Boolean getIgnoreFirst() {
+		return ignoreFirst;
+	}
+
+	public void setIgnoreFirst(Boolean ignoreFirst) {
+		this.ignoreFirst = ignoreFirst;
+	}
+
+	private Boolean ignoreFirst = false;
+
 	public String getTableName() {
 		return tableName;
 	}
